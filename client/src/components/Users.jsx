@@ -23,10 +23,19 @@ const Users = () => {
     fetchUsers();
   }, []);
 
+  const handleDelete = async (Id) => {
+    try {
+      await axios.delete('http://localhost:4000/users/' + Id);
+      window.location.reload();
+    } catch (err) {
+      console.log(err);
+    }
+  };
   return (
     <div className="relative overflow-x-auto">
-      <table className="w-[70%] mx-auto text-sm text-left rtl:text-right text-white ">
-        <thead className="text-xs uppercase bg-gray-50 dark:bg-gray-700 shadow-md">
+      <h1 className="text-center py-5 uppercase font-bold">User all data</h1>
+      <table className="w-[70%] mx-auto  ">
+        <thead className="text-xs uppercase bg-gray-300  shadow-md">
           <tr>
             <th scope="col" className="px-6 py-3">
               ID
@@ -51,7 +60,7 @@ const Users = () => {
             </th>
           </tr>
         </thead>
-        <tbody className="text-xs uppercase bg-orange-700">
+        <tbody className="text-xs uppercase">
           {users.map(({ Id, Name, Age, Village, Job, Office }) => {
             return (
               <tr key={Id}>
@@ -64,10 +73,10 @@ const Users = () => {
                 <td className="px-6 py-3">
                   <div>
                     <button className="p-3 mx-2 bg-green-600">
-                      <Link>Edit</Link>
+                      <Link to={`/update/${Id}`}>Edit</Link>
                     </button>
-                    <button className="p-3 mx-2 bg-red-900">
-                      <Link>Delete</Link>
+                    <button onClick={() => handleDelete(Id)} className="p-3 mx-2 bg-red-600">
+                      Delete
                     </button>
                   </div>
                 </td>
@@ -75,6 +84,9 @@ const Users = () => {
             );
           })}
         </tbody>
+        <button className=" bg-blue-600 px-6 py-3 capitalize">
+          <Link to={'/add'}>Add new user</Link>
+        </button>
       </table>
     </div>
   );
