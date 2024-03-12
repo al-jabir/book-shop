@@ -25,9 +25,9 @@ const getUsersById = async (req, res) => {
     const q = 'select * from users where Id = ?';
     await db.query(q, id, (err, data) => {
       if (err) {
-        return res.status(400).json({ success: false, message: 'User id data not found' });
+        return res.status(400).json({ success: false, message: 'User single data not found' });
       } else {
-        return res.status(200).json({ success: true, message: 'User id data found', data });
+        return res.status(200).json({ success: true, message: 'User single data found', data });
       }
     });
   } catch (err) {
