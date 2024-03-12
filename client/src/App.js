@@ -1,29 +1,20 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
+import { BrowserRouter, Route, Routes } from 'react-router-dom';
+import Add from './components/Add';
+import Update from './components/Update';
+import Users from './components/Users';
 
 const App = () => {
-  const [user, setUser] = useState([]);
-  useEffect(() => {
-    fetch('http://localhost:4000/users')
-      .then((res) => res.json())
-      .then((data) => setUser(data))
-      .catch((err) => console.log(err));
-  }, []);
   return (
-    <>
-      <table className="table">
-        <thead>
-          <tr>
-            <th>Id</th>
-            <th>Name</th>
-            <th>Age</th>
-            <th>Village</th>
-            <th>Job</th>
-            <th>Salary</th>
-            <th>Office</th>
-          </tr>
-        </thead>
-      </table>
-    </>
+    <div className="App">
+      <BrowserRouter>
+        <Routes>
+          <Route path="/" element={<Users />} />
+          <Route path="/add" element={<Add />} />
+          <Route path="/update" element={<Update />} />
+        </Routes>
+      </BrowserRouter>
+    </div>
   );
 };
 
