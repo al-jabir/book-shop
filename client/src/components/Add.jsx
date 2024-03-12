@@ -28,6 +28,7 @@ const Add = () => {
 
   return (
     <div className="h-[100vh] p-6 flex flex-col justify-center items-center w-full">
+      <h1 className="text-center py-5 uppercase font-bold">Add user data</h1>
       <form className="w-full max-w-sm">
         <div className="md:flex md:items-center mb-6">
           <div className="md:w-1/3">
