@@ -23,12 +23,12 @@ const addUsers = async (req, res) => {
   try {
     const q = 'INSERT INTO users (`Name`,`Age`,`Village`,`Job`,`Salary`,`Office)';
     const values = [
-      'name from server',
-      'age from server',
-      'village from server',
-      'job from server',
-      'salary from server',
-      'office from server',
+      req.body.name,
+      req.body.age,
+      req.body.Village,
+      req.body.Job,
+      req.body.Salary
+      req.body.Office
     ];
     await db.query(q, [values], (err, data) => {
       if (err) {
